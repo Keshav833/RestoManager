@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #FF7F50; /* Coral Orange */
+  --color-brand-secondary: #0D9488; /* Teal 600 */
+  --color-surface: #FFFDF9;
+  --color-card: #FFFFFF;
+  
+  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+}
+
+:root {
+  --background: #FFFDF9;
+  --foreground: #1a1a1a;
+  --muted: #64748b;
+  --border: #f1f1f1;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  * {
+    @apply border-slate-200;
+  }
+}
+
+.glass {
+  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-soft;
+}
+
+.gradient-text {
+  @apply bg-linear-to-br from-brand-primary to-orange-600 bg-clip-text text-transparent;
+}
+
+.gradient-bg {
+  @apply bg-linear-to-br from-brand-primary to-orange-600;
+}
+
+.teal-badge {
+  @apply bg-teal-50 text-teal-700 border border-teal-100;
+}
