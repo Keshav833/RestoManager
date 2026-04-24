@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { useRestaurants } from "@/context/RestaurantContext";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { Header } from "@/components/Header";
@@ -32,23 +33,64 @@ export default function Home() {
             <div className="absolute inset-0 bg-brand-primary mix-blend-multiply opacity-60"></div>
           </div>
 
-          <div className="absolute -top-10 -right-10 w-48 h-48 bg-brand-accent border-4 border-black -rotate-12 hidden md:flex items-center justify-center font-black text-black text-center text-xl uppercase p-4 z-20 shadow-brutal-sm">
+          <motion.div 
+            initial={{ x: 100, opacity: 0, rotate: 12 }}
+            animate={{ x: 0, opacity: 1, rotate: -12 }}
+            transition={{ delay: 1.2, duration: 0.6, type: "spring" }}
+            className="absolute -top-10 -right-10 w-48 h-48 bg-brand-accent border-4 border-black hidden md:flex items-center justify-center font-black text-black text-center text-xl uppercase p-4 z-20 shadow-brutal-sm"
+          >
             NEW SYSTEM ONLINE
-          </div>
+          </motion.div>
           
           <div className="relative z-10 p-12 md:p-24 bg-brand-primary/80 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none border-t-8 md:border-t-0 border-black mt-auto md:mt-0 w-full">
-            <span className="brutal-badge mb-8 inline-block">
+            <motion.span 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="brutal-badge mb-8 inline-block"
+            >
               V4.0 // RAW & UNFILTERED
-            </span>
-            <h2 className="text-6xl md:text-9xl font-black text-black mb-10 tracking-tighter leading-[0.85] uppercase italic">
-              MANAGE <br />
-              <span className="bg-black text-brand-primary px-4 mt-4">YOUR EMPIRE.</span>
+            </motion.span>
+            
+            <h2 className="text-6xl md:text-9xl font-black text-black mb-10 tracking-tighter leading-[0.85] uppercase italic flex flex-col">
+              <div className="overflow-hidden">
+                <motion.span 
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="block"
+                >
+                  MANAGE
+                </motion.span>
+              </div>
+              <div className="overflow-hidden">
+                <motion.span 
+                  initial={{ x: "-110%" }}
+                  animate={{ x: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="bg-black text-brand-primary px-4 mt-4 inline-block w-fit"
+                >
+                  YOUR EMPIRE.
+                </motion.span>
+              </div>
             </h2>
-            <p className="text-black text-xl md:text-2xl max-w-2xl mb-12 font-black leading-tight uppercase bg-white md:bg-transparent inline-block p-2 md:p-0 border-4 md:border-0 border-black">
+
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="text-black text-xl md:text-2xl max-w-2xl mb-12 font-black leading-tight uppercase bg-white md:bg-transparent inline-block p-2 md:p-0 border-4 md:border-0 border-black"
+            >
               The only platform built for real restaurateurs. <br className="hidden md:block" />
               NO FLUFF. NO GLASS. JUST POWER.
-            </p>
-            <div className="flex flex-wrap gap-8">
+            </motion.p>
+
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.5 }}
+              className="flex flex-wrap gap-8"
+            >
               <Link 
                 href="/restaurants" 
                 className="brutal-btn bg-black text-white hover:bg-brand-accent hover:text-black text-xl"
@@ -61,7 +103,7 @@ export default function Home() {
               >
                 GET STARTED →
               </Link>
-            </div>
+            </motion.div>
           </div>
         </section>
 
