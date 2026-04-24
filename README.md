@@ -1,36 +1,181 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ Restaurant Manager
 
-## Getting Started
+A frontend restaurant management app built with **Next.js**, **TypeScript**, and **Tailwind CSS**. Users can browse, search, add, and view detailed info for restaurants — with data persisted via localStorage.
 
-First, run the development server:
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
 
 ```bash
+git clone https://github.com/your-username/restaurant-manager.git
+cd restaurant-manager
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── page.tsx                        # Home page (/)
+│   ├── layout.tsx                      # Root layout with provider
+│   ├── globals.css                     # Global styles
+│   ├── restaurants/
+│   │   └── page.tsx                    # All restaurants listing (/restaurants)
+│   ├── manage/
+│   │   └── restaurant/
+│   │       └── add/
+│   │           └── page.tsx            # Add restaurant form (/manage/restaurant/add)
+│   └── restaurant/
+│       └── [slug]/
+│           └── page.tsx                # Restaurant detail page (/restaurant/[slug])
+│
+├── components/
+│   ├── Header.tsx                      # App header with search + nav
+│   ├── RestaurantCard.tsx              # Reusable restaurant card
+│   ├── SearchBar.tsx                   # Controlled search input
+│   └── RestaurantForm.tsx              # Add restaurant form fields
+│
+├── context/
+│   └── RestaurantContext.tsx           # Global state + localStorage sync
+│
+├── types/
+│   └── restaurant.ts                   # TypeScript types
+│
+└── lib/
+    ├── mockData.ts                     # Sample restaurants
+    └── utils.ts                        # Slug generator + helpers
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗺️ Pages & Routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Description |
+|-------|-------------|
+| `/` | Home page with featured restaurants and search |
+| `/restaurants` | Full listing with search and type filter |
+| `/manage/restaurant/add` | Form to add a new restaurant |
+| `/restaurant/[slug]` | Dynamic detail page for each restaurant |
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ✨ Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Browse restaurants** in a responsive card grid
+- **Search** restaurants by name (client-side filtering)
+- **Filter by type** — Cafe, Fine Dining, Fast Food, Cloud Kitchen
+- **Add new restaurants** via a validated form
+- **Persistent data** — restaurants saved to localStorage, survive page refresh
+- **Dynamic routing** — each restaurant has its own URL via slug
+- **Responsive UI** — works on mobile, tablet, and desktop
+
+---
+
+## 🧱 Tech Stack
+
+| Tool | Purpose |
+|------|---------|
+| Next.js 14 (App Router) | Framework + routing |
+| TypeScript | Type safety |
+| Tailwind CSS | Styling |
+| React Context API | Global state management |
+| localStorage | Client-side data persistence |
+
+---
+
+## 🧩 Key Components
+
+### `RestaurantCard`
+Reusable card component. Displays image, name, type badge, and address. Clicking navigates to the detail page.
+
+### `SearchBar`
+Controlled input component. Accepts `value` and `onChange` props for parent-managed filtering.
+
+### `Header`
+App-wide header with the title, search bar, and "Add Restaurant" CTA button.
+
+### `RestaurantForm`
+Full form for adding a restaurant. Includes validation, slug generation on submit, and redirect on success.
+
+---
+
+## 🗃️ Data Model
+
+```ts
+type Restaurant = {
+  id: string
+  slug: string
+  name: string
+  ownerName: string
+  mobile: string
+  address: {
+    line1: string
+    area: string
+    city: string
+    state: string
+    pincode: string
+  }
+  type: 'Cafe' | 'Fine Dining' | 'Fast Food' | 'Cloud Kitchen'
+  imageUrl: string
+}
+```
+
+---
+
+## 🔧 Utility Functions
+
+### `generateSlug(name: string): string`
+Converts a restaurant name to a URL-safe slug.
+
+```ts
+generateSlug("The Spice Garden!")  // → "the-spice-garden"
+generateSlug("KFC Fast Food")      // → "kfc-fast-food"
+```
+
+---
+
+## 📦 LocalStorage
+
+Data is stored under the key `restaurants` in the browser's localStorage.
+
+- On first load, mock data is seeded automatically.
+- Every new restaurant added via the form is persisted immediately.
+- To reset data: open DevTools → Application → Local Storage → delete the `restaurants` key.
+
+---
+
+## 🧪 Testing Routes
+
+| URL | Expected |
+|-----|----------|
+| `localhost:3000/` | Home with restaurant cards |
+| `localhost:3000/restaurants` | Full listing + filters |
+| `localhost:3000/manage/restaurant/add` | Add form |
+| `localhost:3000/restaurant/the-spice-garden` | Detail page |
+| `localhost:3000/restaurant/fake-slug` | "Not found" message |
+
+---
+
+## 🌱 Bonus Features (Optional)
+
+- [ ] Debounced search
+- [ ] Edit restaurant
+- [ ] Delete with confirmation modal
+- [ ] Pagination or infinite scroll
+
+---
+
+made with ❤️ by Keshav chauhan

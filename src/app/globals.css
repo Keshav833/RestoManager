@@ -1,46 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-primary: #FF7F50; /* Coral Orange */
-  --color-brand-secondary: #0D9488; /* Teal 600 */
-  --color-surface: #FFFDF9;
-  --color-card: #FFFFFF;
+  --color-brand-primary: #FFEE00; /* Electric Yellow */
+  --color-brand-secondary: #00F0FF; /* Cyan */
+  --color-brand-accent: #FF00F0; /* Magenta */
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
   
-  --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  --shadow-brutal: 8px 8px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-sm: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+  --shadow-brutal-hover: 12px 12px 0px 0px rgba(0, 0, 0, 1);
 }
 
 :root {
-  --background: #FFFDF9;
-  --foreground: #1a1a1a;
-  --muted: #64748b;
-  --border: #f1f1f1;
+  --background: #ffffff;
+  --foreground: #000000;
+  --muted: #666666;
+  --border: #000000;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
   -webkit-font-smoothing: antialiased;
 }
 
+
 @layer base {
   * {
-    @apply border-slate-200;
+    @apply border-black;
   }
 }
 
-.glass {
-  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-soft;
+.brutal-card {
+  @apply bg-white border-4 border-black shadow-brutal transition-all duration-100;
 }
 
-.gradient-text {
-  @apply bg-linear-to-br from-brand-primary to-orange-600 bg-clip-text text-transparent;
+.brutal-card:hover {
+  @apply -translate-x-1 -translate-y-1 shadow-brutal-hover;
 }
 
-.gradient-bg {
-  @apply bg-linear-to-br from-brand-primary to-orange-600;
+.brutal-btn {
+  @apply px-6 py-3 bg-brand-primary border-4 border-black font-black uppercase tracking-tighter shadow-brutal-sm hover:shadow-brutal hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0 active:translate-y-0 active:shadow-none transition-all;
 }
 
-.teal-badge {
-  @apply bg-teal-50 text-teal-700 border border-teal-100;
+.brutal-input {
+  @apply px-4 py-3 bg-white border-4 border-black font-bold focus:outline-none focus:bg-brand-secondary/20 transition-colors;
+}
+
+.brutal-badge {
+  @apply px-3 py-1 bg-brand-accent text-black font-black border-2 border-black uppercase text-[10px] tracking-widest;
 }

@@ -6,24 +6,26 @@ import Link from "next/link";
 
 export default function AddRestaurantPage() {
   return (
-    <div className="min-h-screen bg-slate-950 py-12 px-4">
+    <div className="min-h-screen bg-white py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <Link 
           href="/" 
-          className="inline-flex items-center text-brand-primary hover:text-brand-secondary transition-colors mb-8 font-medium"
+          className="brutal-btn bg-black text-white hover:bg-brand-primary hover:text-black mb-16 inline-block"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          Back to Dashboard
+          ← BACK TO SYSTEM
         </Link>
 
-        <div className="mb-12">
-          <h1 className="text-4xl font-black text-white tracking-tight mb-4">
-            Add New Restaurant
+        <div className="mb-16 border-b-8 border-black pb-12">
+          <div className="flex items-center gap-4 mb-6">
+            <span className="brutal-badge">ACTION // 01</span>
+            <span className="text-black font-black uppercase tracking-tighter text-xl">SYSTEM REGISTRATION</span>
+          </div>
+          <h1 className="text-6xl md:text-8xl font-black text-black tracking-tighter mb-8 uppercase italic leading-none">
+            INITIALIZE <br />
+            <span className="bg-black text-brand-primary px-4">NEW ASSET.</span>
           </h1>
-          <p className="text-slate-400 text-lg">
-            Fill in the details below to register a new restaurant in your management system.
+          <p className="text-black text-2xl font-black uppercase leading-tight">
+            PROVIDE DATA STRINGS FOR THE SPECIFIED RESTAURANT ENTITY.
           </p>
         </div>
 

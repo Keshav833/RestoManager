@@ -55,15 +55,15 @@ export const RestaurantForm = () => {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!formData.name) newErrors.name = "Name is required";
-    if (!formData.ownerName) newErrors.ownerName = "Owner name is required";
-    if (!formData.mobile) newErrors.mobile = "Mobile number is required";
-    if (!formData.imageUrl) newErrors.imageUrl = "Image URL is required";
-    if (!formData.address.line1) newErrors["address.line1"] = "Address Line 1 is required";
-    if (!formData.address.area) newErrors["address.area"] = "Area is required";
-    if (!formData.address.city) newErrors["address.city"] = "City is required";
-    if (!formData.address.state) newErrors["address.state"] = "State is required";
-    if (!formData.address.pincode) newErrors["address.pincode"] = "Pincode is required";
+    if (!formData.name) newErrors.name = "REQUIRED";
+    if (!formData.ownerName) newErrors.ownerName = "REQUIRED";
+    if (!formData.mobile) newErrors.mobile = "REQUIRED";
+    if (!formData.imageUrl) newErrors.imageUrl = "REQUIRED";
+    if (!formData.address.line1) newErrors["address.line1"] = "REQUIRED";
+    if (!formData.address.area) newErrors["address.area"] = "REQUIRED";
+    if (!formData.address.city) newErrors["address.city"] = "REQUIRED";
+    if (!formData.address.state) newErrors["address.state"] = "REQUIRED";
+    if (!formData.address.pincode) newErrors["address.pincode"] = "REQUIRED";
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -86,157 +86,159 @@ export const RestaurantForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-100 shadow-soft">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="space-y-4 md:col-span-2">
-          <h2 className="text-2xl font-black text-slate-900 border-b-4 border-orange-100 pb-2 inline-block">Basic Information</h2>
+    <form onSubmit={handleSubmit} className="brutal-card p-8 md:p-16 bg-white space-y-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="md:col-span-2">
+          <h2 className="text-4xl font-black text-black uppercase italic tracking-tighter border-b-8 border-black pb-4">
+            REGISTRATION // 01 // BASIC INFO
+          </h2>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Restaurant Name</label>
+        <div className="space-y-3">
+          <label className="text-lg font-black uppercase italic">Restaurant Name</label>
           <input
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors.name ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="e.g. The Spicy Bistro"
+            className={`brutal-input w-full ${errors.name ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+            placeholder="THE NOISY DINER"
           />
-          {errors.name && <p className="text-red-500 text-xs font-medium">{errors.name}</p>}
+          {errors.name && <p className="text-brand-accent font-black text-xs uppercase">{errors.name}</p>}
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Restaurant Type</label>
+        <div className="space-y-3">
+          <label className="text-lg font-black uppercase italic">System Type</label>
           <select
             name="type"
             value={formData.type}
             onChange={handleChange}
-            className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium appearance-none"
+            className="brutal-input w-full appearance-none cursor-pointer"
           >
-            <option value="Cafe">☕ Cafe</option>
-            <option value="Fine Dining">🍴 Fine Dining</option>
-            <option value="Fast Food">🍔 Fast Food</option>
-            <option value="Cloud Kitchen">☁️ Cloud Kitchen</option>
+            <option value="Cafe">CAFE // 01</option>
+            <option value="Fine Dining">FINE DINING // 02</option>
+            <option value="Fast Food">FAST FOOD // 03</option>
+            <option value="Cloud Kitchen">CLOUD KITCHEN // 04</option>
           </select>
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Owner Name</label>
+        <div className="space-y-3">
+          <label className="text-lg font-black uppercase italic">Owner / Commander</label>
           <input
             type="text"
             name="ownerName"
             value={formData.ownerName}
             onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors.ownerName ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="John Doe"
+            className={`brutal-input w-full ${errors.ownerName ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+            placeholder="NAME OF COMMANDER"
           />
-          {errors.ownerName && <p className="text-red-500 text-xs font-medium">{errors.ownerName}</p>}
+          {errors.ownerName && <p className="text-brand-accent font-black text-xs uppercase">{errors.ownerName}</p>}
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Mobile Number</label>
+        <div className="space-y-3">
+          <label className="text-lg font-black uppercase italic">Direct Line</label>
           <input
             type="tel"
             name="mobile"
             value={formData.mobile}
             onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors.mobile ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="9876543210"
+            className={`brutal-input w-full ${errors.mobile ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+            placeholder="+00 0000 0000"
           />
-          {errors.mobile && <p className="text-red-500 text-xs font-medium">{errors.mobile}</p>}
+          {errors.mobile && <p className="text-brand-accent font-black text-xs uppercase">{errors.mobile}</p>}
         </div>
 
-        <div className="space-y-2 md:col-span-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Image URL</label>
+        <div className="md:col-span-2 space-y-3">
+          <label className="text-lg font-black uppercase italic">Visual Asset URL</label>
           <input
             type="url"
             name="imageUrl"
             value={formData.imageUrl}
             onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors.imageUrl ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="https://images.unsplash.com/..."
+            className={`brutal-input w-full ${errors.imageUrl ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+            placeholder="HTTPS://ASSETS.SYSTEM/IMAGE.JPG"
           />
-          {errors.imageUrl && <p className="text-red-500 text-xs font-medium">{errors.imageUrl}</p>}
+          {errors.imageUrl && <p className="text-brand-accent font-black text-xs uppercase">{errors.imageUrl}</p>}
         </div>
 
-        <div className="space-y-4 md:col-span-2 mt-8">
-          <h2 className="text-2xl font-black text-slate-900 border-b-4 border-orange-100 pb-2 inline-block">Address Details</h2>
+        <div className="md:col-span-2 mt-10">
+          <h2 className="text-4xl font-black text-black uppercase italic tracking-tighter border-b-8 border-black pb-4">
+            REGISTRATION // 02 // LOCATION
+          </h2>
         </div>
 
-        <div className="space-y-2 md:col-span-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Address Line 1</label>
+        <div className="md:col-span-2 space-y-3">
+          <label className="text-lg font-black uppercase italic">Primary Address</label>
           <input
             type="text"
             name="address.line1"
             value={formData.address.line1}
             onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors["address.line1"] ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="123, Main Street"
+            className={`brutal-input w-full ${errors["address.line1"] ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+            placeholder="SECTOR // 01 // STREET"
           />
-          {errors["address.line1"] && <p className="text-red-500 text-xs font-medium">{errors["address.line1"]}</p>}
+          {errors["address.line1"] && <p className="text-brand-accent font-black text-xs uppercase">{errors["address.line1"]}</p>}
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Area</label>
+        <div className="space-y-3">
+          <label className="text-lg font-black uppercase italic">Zone / Area</label>
           <input
             type="text"
             name="address.area"
             value={formData.address.area}
             onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors["address.area"] ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="Downtown"
+            className={`brutal-input w-full ${errors["address.area"] ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+            placeholder="DOWNTOWN"
           />
-          {errors["address.area"] && <p className="text-red-500 text-xs font-medium">{errors["address.area"]}</p>}
+          {errors["address.area"] && <p className="text-brand-accent font-black text-xs uppercase">{errors["address.area"]}</p>}
         </div>
 
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">City</label>
-          <input
-            type="text"
-            name="address.city"
-            value={formData.address.city}
-            onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors["address.city"] ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="New York"
-          />
-          {errors["address.city"] && <p className="text-red-500 text-xs font-medium">{errors["address.city"]}</p>}
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">State</label>
-          <input
-            type="text"
-            name="address.state"
-            value={formData.address.state}
-            onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors["address.state"] ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="NY"
-          />
-          {errors["address.state"] && <p className="text-red-500 text-xs font-medium">{errors["address.state"]}</p>}
-        </div>
-
-        <div className="space-y-2">
-          <label className="text-sm font-bold text-slate-700 ml-1">Pincode</label>
-          <input
-            type="text"
-            name="address.pincode"
-            value={formData.address.pincode}
-            onChange={handleChange}
-            className={`w-full bg-slate-50 border ${errors["address.pincode"] ? 'border-red-500' : 'border-slate-100'} rounded-2xl px-5 py-4 text-slate-900 focus:outline-none focus:ring-4 focus:ring-orange-500/5 focus:border-brand-primary transition-all font-medium`}
-            placeholder="10001"
-          />
-          {errors["address.pincode"] && <p className="text-red-500 text-xs font-medium">{errors["address.pincode"]}</p>}
+        <div className="grid grid-cols-3 gap-6 md:col-span-1">
+          <div className="col-span-1 space-y-3">
+            <label className="text-lg font-black uppercase italic">City</label>
+            <input
+              type="text"
+              name="address.city"
+              value={formData.address.city}
+              onChange={handleChange}
+              className={`brutal-input w-full ${errors["address.city"] ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+              placeholder="NY"
+            />
+          </div>
+          <div className="col-span-1 space-y-3">
+            <label className="text-lg font-black uppercase italic">State</label>
+            <input
+              type="text"
+              name="address.state"
+              value={formData.address.state}
+              onChange={handleChange}
+              className={`brutal-input w-full ${errors["address.state"] ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+              placeholder="NY"
+            />
+          </div>
+          <div className="col-span-1 space-y-3">
+            <label className="text-lg font-black uppercase italic">ZIP</label>
+            <input
+              type="text"
+              name="address.pincode"
+              value={formData.address.pincode}
+              onChange={handleChange}
+              className={`brutal-input w-full ${errors["address.pincode"] ? 'bg-brand-accent/20 border-brand-accent' : ''}`}
+              placeholder="000"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="pt-8">
+      <div className="pt-10">
         <button
           type="submit"
-          className="w-full py-5 gradient-bg text-white font-black rounded-[1.5rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-orange-500/30 text-xl tracking-tight"
+          className="brutal-btn w-full bg-black text-white hover:bg-brand-primary hover:text-black py-8 text-3xl italic"
         >
-          Register Restaurant
+          INITIALIZE SYSTEM →
         </button>
       </div>
     </form>
   );
 };
+
